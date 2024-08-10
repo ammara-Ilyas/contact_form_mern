@@ -21,7 +21,14 @@ const handleLogin = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid email or password" });
     }
-    await loginUser.generateAuthToken();
+    const token = await loginUser.generateAuthToken();
+    // Set the cookie with the token
+    res.cookie("jwt", token, {
+      expires: new Date(Date.now() + 50000), // Cookie will expire in 50 seconds
+      httpOnly: true, // This prevents client-side JavaScript from accessing the cookie
+      // secure: process.env.NODE_ENV === "production", // Send the cookie over HTTPS only in production
+      // sameSite: "strict", // Protects against CSRF attacks
+    });
     // Successful login
     res.json({ message: "Login successful" });
   } catch (error) {

@@ -34,6 +34,7 @@ userSachema.methods.generateAuthToken = async function () {
     const token = jwt.sign({ id: this.id }, "htghyjklbdrghukloiuytghhjjjbfdds");
     console.log("token in schema", token);
     this.tokens = this.tokens.concat({ token });
+    return token;
   } catch (error) {
     console.log("error token", error);
   }
