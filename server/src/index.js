@@ -1,30 +1,29 @@
 import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import authRoutes from "./router/auth.js";
-
-const app = express();
-app.use(express.json());
-app.use(cors());
-
+import connectDB from "./db.js";
 import dotenv from "dotenv";
-dotenv.config();
+import cors from "cors";
+import router from "../router/route.js";
+const app = express();
 
-app.use("/api/auth", authRoutes);
-const mongodbUrl = process.env.MONGODB_URL;
-const connectDB = async () => {
-  try {
-    await mongoose.connect(`${mongodbUrl}/contact`);
-    console.log("Connected to MongoDB");
-  } catch (err) {
-    console.error("Failed to connect to MongoDB", err);
-    process.exit(1);
-  }
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-connectDB();
+app.use(express.urlencoded({ extended: "false" }));
+app.use(express.json());
+app.use(cors(corsOptions));
+
+dotenv.config();
+
+app.use("/api/auth", router);
+
+const url = process.env.MONGODB_URL;
 const port = process.env.PORT || 5000;
+connectDB(url);
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-// http://localhost:5000
