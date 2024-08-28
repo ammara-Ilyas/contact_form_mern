@@ -5,16 +5,21 @@ const secret_key = "78965412hjyf";
 
 export const generateToken = (user) => {
   const payload = { user: { id: user.id } };
-  jwt.sign(payload, secret_key, { expiresIn: "1h" }, (err, token) => {
-    console.log("to", token);
 
-    if (err) {
-      return "JWT signing error:", err;
-    }
-    return token;
+  // Return a new promise
+  return new Promise((resolve, reject) => {
+    jwt.sign(payload, secret_key, { expiresIn: "10s" }, (err, token) => {
+      console.log("to", token);
+
+      if (err) {
+        console.error("JWT signing error:", err);
+        reject("Server error");
+      } else {
+        resolve(token);
+      }
+    });
   });
 };
-
 export function verifyToken(token) {
   return jwt.verify(token, JWT_SECRET);
 }
