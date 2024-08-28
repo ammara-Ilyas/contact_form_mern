@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -12,14 +13,39 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+=======
+  "description": "This is contact page",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/index.js "
+  },
+  "keywords": [
+    "Contact",
+    "form",
+    "authentication",
+    "mern",
+    "express"
+  ],
+  "author": "Ammara Ilyas",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cookies": "^0.9.1",
+>>>>>>> 8666a84bd1a0cf6129e8221027104978c0e33be8
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+<<<<<<< HEAD
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
+=======
+    "mongoose": "^8.5.2"
+>>>>>>> 8666a84bd1a0cf6129e8221027104978c0e33be8
   }
 }

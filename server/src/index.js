@@ -1,4 +1,5 @@
 import express from "express";
+<<<<<<< HEAD
 import connectDB from "./db.js";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -27,3 +28,24 @@ connectDB(url);
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+=======
+import dotenv from "dotenv";
+import handleDbConnection from "./db.js";
+
+import router from "../routes/user.js";
+
+const app = express();
+
+dotenv.config();
+const url = process.env.MONGODB_URI;
+const port = process.env.PORT || 8000;
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.use("/api", router);
+
+handleDbConnection(url);
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+>>>>>>> 8666a84bd1a0cf6129e8221027104978c0e33be8

@@ -1,3 +1,4 @@
+
 import { User } from "../model/User.js";
 import { generateToken } from "./auth.js";
 import bcrypt from "bcryptjs";
